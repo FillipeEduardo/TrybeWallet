@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import saveEmailAction from '../redux/actions';
+import { saveEmailAction } from '../redux/actions';
 
 const SIX_DIGITS = 6;
 
