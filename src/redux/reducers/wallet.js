@@ -5,6 +5,21 @@ const INITIAL_STATE = {
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
 };
 
-const walletReducer = (state = INITIAL_STATE) => state;
+const fetchCotacoes = async () => {
+  const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+  const json = response.json();
+  return json;
+};
+
+const walletReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+  case 'SAVE_DESPESA_ACTION':
+    return ({
+      ...state,
+    });
+  default:
+    return state;
+  }
+};
 
 export default walletReducer;
