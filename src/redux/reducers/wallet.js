@@ -5,6 +5,6 @@ const INITIAL_STATE = {
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
 };
 
-const walletReducer = (state = INITIAL_STATE, action) => state;
+const walletReducer = (state = INITIAL_STATE) => state;
 
 export default walletReducer;
