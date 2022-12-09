@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { walletReducer } from '../redux/actions';
+import { walletAction, saveExpense } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -10,11 +10,12 @@ class WalletForm extends Component {
     currency: 'USD',
     method: 'Dinheiro',
     tag: 'Alimentação',
+    id: 0,
   };
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(walletReducer());
+    dispatch(walletAction());
   }
 
   handlerchange = ({ target }) => {
@@ -25,7 +26,18 @@ class WalletForm extends Component {
   };
 
   handlerClick = () => {
-
+    const { dispatch } = this.props;
+    const { id } = this.state;
+    dispatch(saveExpense(this.state));
+    const CountId = id + 1;
+    this.setState({
+      id: CountId,
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+    });
   };
 
   render() {
