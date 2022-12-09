@@ -5,10 +5,10 @@ import { walletReducer } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
-    valor: '',
-    descricao: '',
-    moeda: 'USD',
-    metodoPagamento: 'Dinheiro',
+    value: '',
+    description: '',
+    currency: 'USD',
+    method: 'Dinheiro',
     tag: 'Alimentação',
   };
 
@@ -24,34 +24,38 @@ class WalletForm extends Component {
     });
   };
 
+  handlerClick = () => {
+
+  };
+
   render() {
-    const { valor, descricao, moeda, metodoPagamento, tag } = this.state;
+    const { value, description, currency, method, tag } = this.state;
     const { moedas } = this.props;
     return (
       <div>
         <input
           data-testid="value-input"
           onChange={ this.handlerchange }
-          value={ valor }
+          value={ value }
           type="number"
-          name="valor"
-          id="valor"
+          name="value"
+          id="value"
         />
         <input
-          value={ descricao }
+          value={ description }
           onChange={ this.handlerchange }
           data-testid="description-input"
           type="text"
-          name="descricao"
-          id="descricao"
+          name="description"
+          id="description"
         />
-        <label htmlFor="moeda">
+        <label htmlFor="currency">
           Moeda
           <select
             data-testid="currency-input"
-            name="moeda"
-            id="moeda"
-            value={ moeda }
+            name="currency"
+            id="currency"
+            value={ currency }
             onChange={ this.handlerchange }
           >
             { moedas.map((m) => (
@@ -61,13 +65,13 @@ class WalletForm extends Component {
             )) }
           </select>
         </label>
-        <label htmlFor="metodoPagamento">
+        <label htmlFor="method">
           Método de Pagamento
           <select
-            name="metodoPagamento"
-            id="metodoPagamento"
+            name="method"
+            id="method"
             data-testid="method-input"
-            value={ metodoPagamento }
+            value={ method }
             onChange={ this.handlerchange }
           >
             <option value="Dinheiro">Dinheiro</option>
@@ -91,6 +95,7 @@ class WalletForm extends Component {
             <option value="Saúde">Saúde</option>
           </select>
         </label>
+        <button onClick={ this.handlerClick } type="button">Adicionar despesa</button>
       </div>
     );
   }
