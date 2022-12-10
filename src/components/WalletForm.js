@@ -71,7 +71,7 @@ class WalletForm extends Component {
             onChange={ this.handlerchange }
           >
             { moedas.map((m) => (
-              <option key={ m } value={ m }>
+              <option data-testid="opcoes-moeda" key={ m } value={ m }>
                 {m}
               </option>
             )) }
