@@ -26,6 +26,11 @@ const walletReducer = (state = INITIAL_STATE, action) => {
       isLoading: false,
       expenses: [...state.expenses, action.payload],
     });
+  case 'DELETE_DESPESA':
+    return ({
+      ...state,
+      expenses: action.payload,
+    });
   default:
     return state;
   }

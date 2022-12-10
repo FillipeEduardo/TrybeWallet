@@ -36,6 +36,15 @@ const saveSucess = (dados) => ({
   payload: dados,
 });
 
+export const deletarDespesaAction = (id) => (dispatch) => {
+  let despesas = [...store.getState().wallet.expenses];
+  despesas = despesas.filter((despesa) => despesa.id !== id);
+  dispatch({
+    type: 'DELETE_DESPESA',
+    payload: despesas,
+  });
+};
+
 export const saveExpense = (state) => async (dispatch) => {
   try {
     const moedas = await fetchCotacoes();
