@@ -5,7 +5,6 @@ const INITIAL_STATE = {
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
   isLoading: false,
   countId: 0,
-  total: '0',
 };
 
 const walletReducer = (state = INITIAL_STATE, action) => {
@@ -26,11 +25,6 @@ const walletReducer = (state = INITIAL_STATE, action) => {
       ...state,
       isLoading: false,
       expenses: [...state.expenses, action.payload],
-    });
-  case 'ATUALIZAR_TOTAL':
-    return ({
-      ...state,
-      total: action.payload.toFixed(2),
     });
   default:
     return state;

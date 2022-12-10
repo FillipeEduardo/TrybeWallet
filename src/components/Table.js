@@ -21,18 +21,24 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          { despesas.map((despesa) => (
-            <tr key={ despesa.id }>
-              <td>{despesa.description}</td>
-              <td>{despesa.tag}</td>
-              <td>{despesa.method}</td>
-              <td>{(+despesa.value).toFixed(2)}</td>
-              <td>{despesa.moeda}</td>
-              <td>{despesa.cambio}</td>
-              <td>{despesa.valorConvertido.toFixed(2)}</td>
-              <td>{despesa.moedaDeConversao}</td>
-            </tr>
-          )) }
+          { despesas.map(
+            ({ description, tag, method, value, exchangeRates, id, currency }) => (
+              <tr key={ id }>
+                <td>{description}</td>
+                <td>{tag}</td>
+                <td>{method}</td>
+                <td>{(+value).toFixed(2)}</td>
+                <td>{exchangeRates[currency].name}</td>
+                <td>{(+exchangeRates[currency].ask).toFixed(2)}</td>
+                <td>
+                  {
+                    ((+exchangeRates[currency].ask) * (+value)).toFixed(2)
+                  }
+                </td>
+                <td>Real</td>
+              </tr>
+            ),
+          ) }
         </tbody>
       </table>
     );
