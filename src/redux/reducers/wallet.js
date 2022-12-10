@@ -27,10 +27,10 @@ const walletReducer = (state = INITIAL_STATE, action) => {
       isLoading: false,
       expenses: [...state.expenses, action.payload],
     });
-  case 'SOMA':
+  case 'ATUALIZAR_TOTAL':
     return ({
       ...state,
-      total: action.payload,
+      total: action.payload.toFixed(2),
     });
   default:
     return state;

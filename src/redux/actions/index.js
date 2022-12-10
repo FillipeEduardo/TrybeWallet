@@ -39,23 +39,12 @@ const saveSucess = (dados) => ({
   payload: dados,
 });
 
-const total = () => {
-  const despesas = store.getState().wallet.expenses;
-  let soma = 0;
-  despesas.forEach((despesa) => {
-    const valorPreenchido = +despesa.value;
-    const moedaEscolhida = despesa.currency;
-    let ask = 0;
-    Object.keys(despesa.exchangeRates).forEach((e) => {
-      if (e === moedaEscolhida) ask = +despesa.exchangeRates[e].ask;
-    });
-    soma += valorPreenchido * ask;
-  });
-
-  soma = soma.toFixed(2);
+const atualizarTotal = () => {
+  const infos = store.getState().wallet.expenses;
+  const total = infos.reduce((acc, curr) => acc + curr.valorConvertido, 0);
   return ({
-    type: 'SOMA',
-    payload: soma,
+    type: 'ATUALIZAR_TOTAL',
+    payload: total,
   });
 };
 
@@ -66,9 +55,13 @@ export const saveExpense = (state) => async (dispatch) => {
     const dados = {
       ...state,
       exchangeRates: moedas,
+      cambio: moedas[state.currency].ask,
+      moeda: moedas[state.currency].name,
+      moedaDeConversao: 'Real',
+      valorConvertido: +moedas[state.currency].ask * +state.value,
     };
     dispatch(saveSucess(dados));
-    dispatch(total());
+    dispatch(atualizarTotal());
   } catch (error) {
     requestFailed(error);
   }
