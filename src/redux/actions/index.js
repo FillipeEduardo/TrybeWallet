@@ -10,11 +10,6 @@ const requestSuccessful = (dados) => ({
   payload: dados,
 });
 
-const requestFailed = (error) => ({
-  type: 'REQUEST_FAILED',
-  payload: error,
-});
-
 const fetchCotacoes = async () => {
   const response = await fetch('https://economia.awesomeapi.com.br/json/all');
   const json = response.json();
@@ -22,13 +17,9 @@ const fetchCotacoes = async () => {
 };
 
 export const walletAction = () => async (dispatch) => {
-  try {
-    let moedas = Object.keys(await fetchCotacoes());
-    moedas = moedas.filter((m) => m !== 'USDT');
-    dispatch(requestSuccessful(moedas));
-  } catch (error) {
-    requestFailed(error);
-  }
+  let moedas = Object.keys(await fetchCotacoes());
+  moedas = moedas.filter((m) => m !== 'USDT');
+  dispatch(requestSuccessful(moedas));
 };
 
 const saveSucess = (dados) => ({
@@ -45,15 +36,41 @@ export const deletarDespesaAction = (id) => (dispatch) => {
   });
 };
 
+export const editarDespesaAction = (id) => (dispatch) => {
+  dispatch({ type: 'EDITAR_DESPESA', idToEdit: id });
+};
+
+export const salvarEdicao = ({ value, description, currency, method,
+  tag }) => (dispatch) => {
+  let despesas = [...store.getState().wallet.expenses];
+  const { idToEdit } = store.getState().wallet;
+  despesas = despesas.map((despesa) => {
+    switch (despesa.id) {
+    case idToEdit:
+      return ({
+        ...despesa,
+        value,
+        description,
+        currency,
+        method,
+        tag,
+      });
+
+    default:
+      return despesa;
+    }
+  });
+  dispatch({
+    type: 'SALVAR_EDICAO',
+    att: despesas,
+  });
+};
+
 export const saveExpense = (state) => async (dispatch) => {
-  try {
-    const moedas = await fetchCotacoes();
-    const dadosPadrao = {
-      ...state,
-      exchangeRates: moedas,
-    };
-    dispatch(saveSucess(dadosPadrao));
-  } catch (error) {
-    requestFailed(error);
-  }
+  const moedas = await fetchCotacoes();
+  const dadosPadrao = {
+    ...state,
+    exchangeRates: moedas,
+  };
+  dispatch(saveSucess(dadosPadrao));
 };

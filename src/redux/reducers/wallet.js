@@ -9,11 +9,6 @@ const INITIAL_STATE = {
 
 const walletReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case 'REQUEST_STARTED':
-    return ({
-      ...state,
-      isLoading: true,
-    });
   case 'REQUEST_SUCCESSFUL':
     return ({
       ...state,
@@ -30,6 +25,18 @@ const walletReducer = (state = INITIAL_STATE, action) => {
     return ({
       ...state,
       expenses: action.payload,
+    });
+  case 'EDITAR_DESPESA':
+    return ({
+      ...state,
+      editor: true,
+      idToEdit: action.idToEdit,
+    });
+  case 'SALVAR_EDICAO':
+    return ({
+      ...state,
+      expenses: action.att,
+      editor: false,
     });
   default:
     return state;
