@@ -115,6 +115,5 @@ describe('Teste da pagina "carteira"', () => {
     const btnSalvarEdicao = screen.getByRole('button', { name: /editar despesa/i });
     expect(btnSalvarEdicao.textContent).toBe('Editar despesa');
     act(() => userEvent.click(btnSalvarEdicao));
-    expect(salvarEdicao(estado)).toBe('function');
   });
 });
