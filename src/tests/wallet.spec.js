@@ -3,18 +3,8 @@ import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import App from '../App';
 import Wallet from '../pages/Wallet';
-import { salvarEdicao } from '../redux/actions';
 import mockData from './helpers/mockData';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
-
-const estado = {
-  value: '1',
-  description: 'hotdog',
-  currency: 'ARS',
-  method: 'Dinheiro',
-  tag: 'Alimentação',
-  id: 10,
-};
 
 describe('Teste da pagina "carteira"', () => {
   it('Testar se todos os campos de input e o botão aparecem ', () => {
@@ -75,7 +65,6 @@ describe('Teste da pagina "carteira"', () => {
         mockData,
       ),
     });
-
     renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'] });
     const valueInput = screen.getByRole('spinbutton');
     const descriptionInput = screen.getByRole('textbox');
@@ -107,7 +96,7 @@ describe('Teste da pagina "carteira"', () => {
     expect(descriptionInput.value).toBe('');
     const btnEdit = await screen.findByTestId('edit-btn');
     expect(btnEdit.textContent).toBe('Editar');
-    userEvent.click(btnEdit);
+    act(() => userEvent.click(btnEdit));
     userEvent.type(valueInput, '2');
     userEvent.type(descriptionInput, 'Coca Cola');
     expect(valueInput.value).toBe('2');
