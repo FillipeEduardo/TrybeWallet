@@ -40,32 +40,6 @@ export const editarDespesaAction = (id) => (dispatch) => {
   dispatch({ type: 'EDITAR_DESPESA', idToEdit: id });
 };
 
-export const salvarEdicao = ({ value, description, currency, method,
-  tag }) => (dispatch) => {
-  let despesas = [...store.getState().wallet.expenses];
-  const { idToEdit } = store.getState().wallet;
-  despesas = despesas.map((despesa) => {
-    switch (despesa.id) {
-    case idToEdit:
-      return ({
-        ...despesa,
-        value,
-        description,
-        currency,
-        method,
-        tag,
-      });
-
-    default:
-      return despesa;
-    }
-  });
-  dispatch({
-    type: 'SALVAR_EDICAO',
-    att: despesas,
-  });
-};
-
 export const saveExpense = (state) => async (dispatch) => {
   const moedas = await fetchCotacoes();
   const dadosPadrao = {

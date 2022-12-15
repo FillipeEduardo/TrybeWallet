@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { walletAction, saveExpense, salvarEdicao } from '../redux/actions';
+import { walletAction, saveExpense } from '../redux/actions';
+import editExpense from '../tests/helpers/editExpense';
 
 class WalletForm extends Component {
   state = {
@@ -26,8 +27,9 @@ class WalletForm extends Component {
   };
 
   handlerEditar = () => {
-    const { dispatch } = this.props;
-    dispatch(salvarEdicao(this.state));
+    const { dispatch, expenses, idToEdit } = this.props;
+    const editedExpenses = editExpense(expenses, this.state, idToEdit);
+    dispatch({ type: 'SALVAR_EDICAO', att: editedExpenses });
   };
 
   handlerClick = () => {
@@ -137,12 +139,15 @@ WalletForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
   moedas: PropTypes.arrayOf(PropTypes.string).isRequired,
   editor: PropTypes.bool.isRequired,
+  idToEdit: PropTypes.number.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.any.isRequired).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   moedas: state.wallet.currencies,
   editor: state.wallet.editor,
   idToEdit: state.wallet.idToEdit,
+  expenses: state.wallet.expenses,
 });
 
 export default connect(mapStateToProps)(WalletForm);
