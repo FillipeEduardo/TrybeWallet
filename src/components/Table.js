@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deletarDespesaAction, editarDespesaAction } from '../redux/actions';
+import '../css/table.css';
+import iconeEditar from '../img/editar.png';
+import iconeApagar from '../img/apagar.png';
 
 class Table extends Component {
   deletarDespesa = (id) => {
@@ -49,18 +52,20 @@ class Table extends Component {
                 <td>Real</td>
                 <td>
                   <button
+                    className="icone"
                     type="button"
                     data-testid="edit-btn"
                     onClick={ () => { this.editarDespesa(id); } }
                   >
-                    Editar
+                    <img src={ iconeEditar } alt="editar" />
                   </button>
                   <button
+                    className="icone"
                     data-testid="delete-btn"
                     type="button"
                     onClick={ () => { this.deletarDespesa(id); } }
                   >
-                    Excluir
+                    <img src={ iconeApagar } alt="editar" />
                   </button>
                 </td>
               </tr>

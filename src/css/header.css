@@ -1,0 +1,32 @@
+.header {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  height: 40%;
+  justify-content: space-around;
+}
+
+.brl {
+  margin-left: 5px;
+}
+
+.logo {
+  height: 52.29px;
+  width: 250.19px;
+}
+
+.despesa {
+  align-items: center;
+  color: #003be5;
+  display: flex;
+}
+
+.email {
+  align-items: center;
+  color: #2fc18c;
+  display: flex;
+}
+
+.texto-p {
+  padding: 6px;
+}

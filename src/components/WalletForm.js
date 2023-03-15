@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { walletAction, saveExpense } from '../redux/actions';
 import editExpense from '../tests/helpers/editExpense';
+import '../css/walletForm.css';
 
 class WalletForm extends Component {
   state = {
@@ -52,84 +53,94 @@ class WalletForm extends Component {
     const { moedas, editor } = this.props;
     return (
       <div>
-        <input
-          data-testid="value-input"
-          onChange={ this.handlerchange }
-          value={ value }
-          type="number"
-          name="value"
-          id="value"
-        />
-        <input
-          value={ description }
-          onChange={ this.handlerchange }
-          data-testid="description-input"
-          type="text"
-          name="description"
-          id="description"
-        />
-        <label htmlFor="currency">
-          Moeda
-          <select
-            data-testid="currency-input"
-            name="currency"
-            id="currency"
-            value={ currency }
-            onChange={ this.handlerchange }
-          >
-            { moedas.map((m) => (
-              <option data-testid="opcoes-moeda" key={ m } value={ m }>
-                {m}
-              </option>
-            )) }
-          </select>
-        </label>
-        <label htmlFor="method">
-          Método de Pagamento
-          <select
-            name="method"
-            id="method"
-            data-testid="method-input"
-            value={ method }
-            onChange={ this.handlerchange }
-          >
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="Cartão de crédito">Cartão de crédito</option>
-            <option value="Cartão de débito">Cartão de débito</option>
-          </select>
-        </label>
-        <label htmlFor="tag">
-          Tag
-          <select
-            data-testid="tag-input"
-            name="tag"
-            id="tag"
-            value={ tag }
-            onChange={ this.handlerchange }
-          >
-            <option value="Alimentação">Alimentação</option>
-            <option value="Lazer">Lazer</option>
-            <option value="Trabalho">Trabalho</option>
-            <option value="Transporte">Transporte</option>
-            <option value="Saúde">Saúde</option>
-          </select>
-        </label>
-        { (editor)
-          ? (
-            <button
-              data-testid="save-edit"
-              onClick={ this.handlerEditar }
-              type="button"
+        <div className="box-cinza">
+          <label htmlFor="description">
+            Descrição da despesa
+            <input
+              value={ description }
+              onChange={ this.handlerchange }
+              data-testid="description-input"
+              type="text"
+              name="description"
+              id="description"
+            />
+          </label>
+          <label htmlFor="tag">
+            Categoria da despesa
+            <select
+              data-testid="tag-input"
+              name="tag"
+              id="tag"
+              value={ tag }
+              onChange={ this.handlerchange }
             >
-              Editar despesa
-            </button>)
-          : (
-            <button
-              onClick={ this.handlerClick }
-              type="button"
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
+            </select>
+          </label>
+          <label htmlFor="value">
+            Valor
+            <input
+              data-testid="value-input"
+              onChange={ this.handlerchange }
+              value={ value }
+              type="number"
+              name="value"
+              id="value"
+            />
+          </label>
+          <label htmlFor="method">
+            Método de Pagamento
+            <select
+              name="method"
+              id="method"
+              data-testid="method-input"
+              value={ method }
+              onChange={ this.handlerchange }
             >
-              Adicionar despesa
-            </button>) }
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Cartão de crédito">Cartão de crédito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
+            </select>
+          </label>
+          <label htmlFor="currency">
+            Moeda
+            <select
+              data-testid="currency-input"
+              name="currency"
+              id="currency"
+              value={ currency }
+              onChange={ this.handlerchange }
+            >
+              { moedas.map((m) => (
+                <option data-testid="opcoes-moeda" key={ m } value={ m }>
+                  {m}
+                </option>
+              )) }
+            </select>
+          </label>
+        </div>
+        <div className="container-botao">
+          { (editor)
+            ? (
+              <button
+                data-testid="save-edit"
+                onClick={ this.handlerEditar }
+                type="button"
+              >
+                Editar despesa
+              </button>)
+            : (
+              <button
+                onClick={ this.handlerClick }
+                type="button"
+              >
+                Adicionar despesa
+              </button>) }
+        </div>
       </div>
     );
   }

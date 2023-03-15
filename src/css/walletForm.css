@@ -1,0 +1,79 @@
+.box-cinza {
+  background: rgba(225, 229, 235, 0.49);
+  border-radius: 0;
+  color: #003be5;
+  display: flex;
+  flex-flow: row wrap;
+  font-family: Epilogue, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  height: 110px;
+  justify-content: space-between;
+  line-height: 14px;
+  padding: 10px 60px;
+}
+
+.box-cinza label {
+  align-items: center;
+  display: flex;
+}
+
+.box-cinza select , input {
+  background: rgba(225, 229, 235, 0.49);
+  border: 1px solid #003be5;
+  border-radius: 5px;
+  color: #003be5;
+  height: 30px;
+  margin: 0 30px;
+}
+
+.box-cinza input {
+  padding: 0 8px;
+}
+
+#description {
+  width: 288.86px;
+}
+
+#tag {
+  width: 155px;
+}
+
+#value {
+  width: 158px;
+}
+
+#method {
+  width: 228px;
+}
+
+#currency {
+  width: 91px;
+}
+
+.container-botao {
+  align-items: center;
+  display: flex;
+  height: 120px;
+  justify-content: center;
+}
+
+.container-botao button {
+  background: #2fc18c;
+  border: 1px solid #2fc18c;
+  border-radius: 5px;
+  color: white;
+  font-family: Epilogue, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  height: 40px;
+  line-height: 14px;
+  width: 330px;
+}
+
+.container-botao button:hover {
+  background-color: #218862;
+  cursor: pointer;
+}

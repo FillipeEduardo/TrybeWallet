@@ -1,0 +1,41 @@
+.container-wallet {
+  align-items: center;
+  background-color: #2fc18c;
+  background-image: url('../img/fotoFundo.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: flex-start;
+  width: 100vw;
+}
+
+.box-branco {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -4px 9px 13px rgba(5, 18, 54, 0.4);
+  height: 387px;
+  position: absolute;
+  width: 1037px;
+}
+
+.container-azul {
+  background-color: #003be5;
+  border-radius: 10px;
+  box-shadow: -4px 9px 13px rgba(3, 107, 82, 0.3);
+  color: white;
+  display: flex;
+  font-family: Epilogue, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  height: auto;
+  justify-content: center;
+  line-height: 13px;
+  margin-top: 155px;
+  min-height: 100px;
+  padding-bottom: 30px;
+  padding-top: 280px;
+  position: absolute;
+  width: 60%;
+}

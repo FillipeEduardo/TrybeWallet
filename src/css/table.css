@@ -1,0 +1,20 @@
+table th {
+  padding-bottom: 10px;
+  padding-left: 18px;
+  padding-right: 18px;
+  text-align: center;
+}
+
+table td {
+  color: #2fc18c;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.icone {
+  background-color: #003be5;
+  border: none;
+  color: none;
+  cursor: pointer;
+  padding: 0 6px;
+}
