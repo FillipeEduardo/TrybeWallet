@@ -45,6 +45,7 @@ form button {
   border: 1px solid #003be5;
   border-radius: 5px;
   color: white;
+  cursor: pointer;
   font-family: Epilogue, sans-serif;
   font-size: 14px;
   font-weight: 700;
